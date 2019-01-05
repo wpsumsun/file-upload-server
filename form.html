@@ -1,4 +1,28 @@
 <form action="http://127.0.0.1:3000/upload" method="post" enctype="multipart/form-data">
 	<input type="file" name="file" />
-	<input type="submit" value="提交">
+	<input id="submit" type="submit" value="提交">
 </form>
+<img src="">
+<script>
+	const submit = document.querySelector('input[type=submit]')
+	const upload = document.querySelector('input[type=file]')
+	const img = document.querySelector('img')
+	const baseUrl = 'http://127.0.0.1:3000'
+	submit.addEventListener('click', e => {
+	  e.preventDefault()
+
+    const file = upload.files[0]
+		const formData = new FormData()
+		formData.append('file', file)
+
+		const xhr = new XMLHttpRequest()
+		xhr.open('POST', `${baseUrl}/upload`)
+		xhr.responseType = 'json'
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        img.src = `${baseUrl}/preview/${xhr.response.filename}`
+      }
+    }
+    xhr.send(formData)
+  })
+</script>
