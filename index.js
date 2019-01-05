@@ -12,6 +12,7 @@ app.get('/form', (req, res, next) => {
 app.post('/upload', upload.single('file'), (req, res, next) => {
   // req.file 是 `avatar` 文件的信息
   // req.body 将具有文本域数据，如果存在的话
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json')
   res.send(req.file)
 })
