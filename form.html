@@ -4,10 +4,10 @@
 </form>
 <img src="">
 <script>
-	const submit = document.querySelector('input[type=submit]')
+  const submit = document.querySelector('input[type=submit]')
 	const upload = document.querySelector('input[type=file]')
 	const img = document.querySelector('img')
-	const baseUrl = 'http://127.0.0.1:3000'
+	const baseUrl = location.origin
 	submit.addEventListener('click', e => {
 	  e.preventDefault()
 
