@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 const multer  = require('multer')
+const cors = require('cors')
 const upload = multer({ dest: 'uploads/' })
 
 app.get('/form', (req, res, next) => {
@@ -9,10 +10,9 @@ app.get('/form', (req, res, next) => {
   res.send(form);
 })
 
-app.post('/upload', upload.single('file'), (req, res, next) => {
+app.post('/upload', cors(),upload.single('file'), (req, res, next) => {
   // req.file 是 `avatar` 文件的信息
   // req.body 将具有文本域数据，如果存在的话
-  res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json')
   res.send(req.file)
 })
