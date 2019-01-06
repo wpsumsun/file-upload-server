@@ -32,5 +32,4 @@ app.get('/preview/:filename',(req, res, next) => {
 })
 
 const port = process.env.PORT || 3000
-console.log('port', port);
 app.listen(port)
